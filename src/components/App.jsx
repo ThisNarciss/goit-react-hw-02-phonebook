@@ -15,15 +15,10 @@ export class App extends Component {
     filter: '',
   };
   onBtnDeleteClick = id => {
-    const { contacts } = this.state;
-
-    // contacts.pop();
     this.setState(prevState => {
-      console.log(prevState.contacts);
       const filter = prevState.contacts.filter(contacts => contacts.id !== id);
       return { contacts: [...filter] };
     });
-    console.dir(contacts);
   };
 
   render() {

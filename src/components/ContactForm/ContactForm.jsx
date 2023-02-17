@@ -11,7 +11,7 @@ export class ContactForm extends Component {
 
   handleFormChange = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value.trim() });
   };
 
   handleFormSubmit = e => {
