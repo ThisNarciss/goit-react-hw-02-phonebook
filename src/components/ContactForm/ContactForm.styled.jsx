@@ -13,24 +13,13 @@ export const InputBox = styled.div`
 `;
 
 export const Label = styled.label`
-  position: absolute;
-  top: 50%;
-  left: 5px;
-  transform: translateY(-50%);
-  transition: transform 250ms linear;
-
-  /* :hover,
-  :focus {
-    top: 0;
-    left: -5px;
-    transform: translateX(-100%);
-  } */
+  font-size: 14px;
 `;
 
 export const FormInput = styled.input`
   padding: 5px 15px;
   outline: none;
-  border: 2px solid grey;
+  border: none;
   border-radius: 5px;
   transition: border 250ms linear;
   :hover,

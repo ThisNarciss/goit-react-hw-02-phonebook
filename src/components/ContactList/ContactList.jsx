@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { BiUser } from 'react-icons/bi';
 import { Item, List, ButtonDel, Text } from './ContactList.styled';
 
 export class ContactList extends Component {
@@ -14,6 +15,7 @@ export class ContactList extends Component {
         {contacts.map(({ id, name, number }) => {
           return (
             <Item key={id}>
+              <BiUser />
               <Text>
                 {name}: {number}
               </Text>
