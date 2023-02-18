@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
+import { FilterBox, FilterInput, FilterLabel } from './Filter.styled';
 
 export class Filter extends Component {
   filterInputId = nanoid();
@@ -11,15 +12,15 @@ export class Filter extends Component {
   render() {
     const { filterText } = this.props;
     return (
-      <div>
-        <label htmlFor={this.filterInputId}>{filterText}</label>
-        <input
+      <FilterBox>
+        <FilterLabel htmlFor={this.filterInputId}>{filterText}</FilterLabel>
+        <FilterInput
           id={this.filterInputId}
           type="text"
           name="filter"
           onChange={this.handleFilterChange}
         />
-      </div>
+      </FilterBox>
     );
   }
 }

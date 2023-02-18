@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Item, List, ButtonDel, Text } from './ContactList.styled';
 
 export class ContactList extends Component {
   render() {
@@ -9,25 +10,25 @@ export class ContactList extends Component {
     });
 
     return (
-      <ul>
-        {contacts.map(({ id, name, number }, idx, array) => {
+      <List>
+        {contacts.map(({ id, name, number }) => {
           return (
-            <li key={id}>
-              <p>
+            <Item key={id}>
+              <Text>
                 {name}: {number}
-              </p>
-              <button
+              </Text>
+              <ButtonDel
                 type="button"
                 onClick={() => {
                   onBtnClick(id);
                 }}
               >
                 Delete
-              </button>
-            </li>
+              </ButtonDel>
+            </Item>
           );
         })}
-      </ul>
+      </List>
     );
   }
 }

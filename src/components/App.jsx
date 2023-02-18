@@ -3,6 +3,7 @@ import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { ChildrenBox } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -49,15 +50,17 @@ export class App extends Component {
           />
         </Section>
         <Section title="Contacts">
-          <Filter
-            filterText="Find contacts by name"
-            onChange={name => this.setState({ filter: name })}
-          />
-          <ContactList
-            contactsList={contacts}
-            filterName={filter}
-            onBtnClick={this.onBtnDeleteClick}
-          />
+          <ChildrenBox>
+            <Filter
+              filterText="Find contacts by name"
+              onChange={name => this.setState({ filter: name })}
+            />
+            <ContactList
+              contactsList={contacts}
+              filterName={filter}
+              onBtnClick={this.onBtnDeleteClick}
+            />
+          </ChildrenBox>
         </Section>
       </div>
     );
