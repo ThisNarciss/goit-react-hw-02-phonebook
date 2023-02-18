@@ -3,7 +3,7 @@ import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { ChildrenBox } from './App.styled';
+import { ChildrenBox, Container } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -26,7 +26,7 @@ export class App extends Component {
     const { contacts, filter } = this.state;
 
     return (
-      <div>
+      <Container>
         <Section title="Phonebook">
           <ContactForm
             onSubmit={obj => {
@@ -62,7 +62,7 @@ export class App extends Component {
             />
           </ChildrenBox>
         </Section>
-      </div>
+      </Container>
     );
   }
 }

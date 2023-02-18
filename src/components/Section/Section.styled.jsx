@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 
 export const SectionBox = styled.section`
-  background: rgb(63, 70, 251);
-  background: radial-gradient(
-    circle,
-    rgba(63, 70, 251, 1) 56%,
-    rgba(252, 219, 70, 1) 100%
-  );
-
   width: 700px;
   margin: 0 auto;
   display: flex;

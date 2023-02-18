@@ -19,10 +19,11 @@ export const Text = styled.p``;
 export const ButtonDel = styled.button`
   padding: 2px 15px;
   border-radius: 5px;
-  transition: color 250ms linear, background-color 250ms linear;
+  background-color: #2248c3;
+  color: #ffffff;
+  transition: background-color 250ms linear;
   :hover,
   :focus {
-    color: white;
     background-color: red;
   }
 `;
