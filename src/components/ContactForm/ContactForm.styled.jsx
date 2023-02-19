@@ -26,7 +26,7 @@ export const FormInput = styled.input`
 export const ButtonAdd = styled.button`
   padding: 5px 15px;
   border-radius: 5px;
-  background-color: #e7fd2d;
+  background-color: #2248c3;
   color: #ffffff;
   transition: background-color 250ms linear;
   :hover,

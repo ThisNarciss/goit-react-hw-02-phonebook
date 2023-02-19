@@ -1,6 +1,12 @@
 import styled from 'styled-components';
+import { GiRotaryPhone } from 'react-icons/gi';
 
+export const IconPhone = styled(GiRotaryPhone)``;
+export const TitleBox = styled.div`
+  display: flex;
+`;
 export const SectionBox = styled.section`
+  position: relative;
   width: 700px;
   margin: 0 auto;
   display: flex;

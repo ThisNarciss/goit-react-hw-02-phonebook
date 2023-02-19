@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Component } from 'react';
 import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
@@ -17,7 +18,8 @@ export class App extends Component {
   };
   onBtnDeleteClick = id => {
     this.setState(prevState => {
-      const filter = prevState.contacts.filter(contacts => contacts.id !== id);
+      const filter = prevState.contacts.filter(contact => contact.id !== id);
+
       return { contacts: [...filter] };
     });
   };
@@ -36,11 +38,12 @@ export class App extends Component {
                     contact.name.toLowerCase() === obj.name.toLowerCase()
                 )
               ) {
-                alert(`${obj.name} is already in contacts`);
+                Notify.failure(`${obj.name} is already in contacts`);
                 return;
+              } else {
+                Notify.success(`${obj.name} add to the contacts`);
               }
               this.setState(prevState => {
-                console.log(prevState.contacts);
                 return { contacts: [...prevState.contacts, obj] };
               });
             }}
