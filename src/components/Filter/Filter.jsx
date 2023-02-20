@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { FilterBox, FilterInput, FilterLabel } from './Filter.styled';
@@ -5,6 +6,10 @@ import { FilterBox, FilterInput, FilterLabel } from './Filter.styled';
 import { IconSearch } from './Filter.styled';
 
 export class Filter extends Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    filterText: PropTypes.string.isRequired,
+  };
   filterInputId = nanoid();
 
   handleFilterChange = e => {

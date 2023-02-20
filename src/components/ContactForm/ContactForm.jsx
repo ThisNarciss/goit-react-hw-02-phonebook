@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import {
@@ -17,6 +18,12 @@ const schema = yup.object().shape({
 });
 
 export class ContactForm extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    nameText: PropTypes.string.isRequired,
+    numberText: PropTypes.string.isRequired,
+    btnText: PropTypes.string.isRequired,
+  };
   state = {
     name: '',
     number: '',
