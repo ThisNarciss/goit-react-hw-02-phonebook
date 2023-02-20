@@ -25,18 +25,23 @@ export class App extends Component {
   };
 
   addNewContact = obj => {
-    const findContact = this.state.contacts.find(
-      contact =>
-        contact.name.toLowerCase() === obj.name.toLowerCase() ||
-        contact.number.toLowerCase() === obj.number.toLowerCase()
+    const findName = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === obj.name.toLowerCase()
+    );
+    const findNumber = this.state.contacts.find(
+      contact => contact.number.toLowerCase() === obj.number.toLowerCase()
     );
 
-    if (findContact) {
-      Notify.failure(`${obj.name} is already in contacts`);
+    if (findName) {
+      Notify.failure(`${findName.name} is already in contacts`);
       return;
-    } else {
-      Notify.success(`${obj.name} add to the contacts`);
     }
+    if (findNumber) {
+      Notify.failure(`this is ${findNumber.name} phone number`);
+      return;
+    }
+
+    Notify.success(`${obj.name} add to the contacts`);
 
     this.setState({ contacts: [...this.state.contacts, obj] });
   };
