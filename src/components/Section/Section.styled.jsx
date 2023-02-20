@@ -18,4 +18,5 @@ export const SectionBox = styled.section`
 export const Title = styled.h1`
   font-size: 26px;
   line-height: 1.15;
+  margin-bottom: 20px;
 `;

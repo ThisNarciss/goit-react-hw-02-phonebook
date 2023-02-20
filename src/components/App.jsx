@@ -24,6 +24,23 @@ export class App extends Component {
     });
   };
 
+  addNewContact = obj => {
+    const findContact = this.state.contacts.find(
+      contact =>
+        contact.name.toLowerCase() === obj.name.toLowerCase() ||
+        contact.number.toLowerCase() === obj.number.toLowerCase()
+    );
+
+    if (findContact) {
+      Notify.failure(`${obj.name} is already in contacts`);
+      return;
+    } else {
+      Notify.success(`${obj.name} add to the contacts`);
+    }
+
+    this.setState({ contacts: [...this.state.contacts, obj] });
+  };
+
   render() {
     const { contacts, filter } = this.state;
 
@@ -31,22 +48,7 @@ export class App extends Component {
       <Container>
         <Section title="Phonebook">
           <ContactForm
-            onSubmit={obj => {
-              if (
-                contacts.find(
-                  contact =>
-                    contact.name.toLowerCase() === obj.name.toLowerCase()
-                )
-              ) {
-                Notify.failure(`${obj.name} is already in contacts`);
-                return;
-              } else {
-                Notify.success(`${obj.name} add to the contacts`);
-              }
-              this.setState(prevState => {
-                return { contacts: [...prevState.contacts, obj] };
-              });
-            }}
+            onSubmit={this.addNewContact}
             nameText="Name"
             numberText="Number"
             btnText="Add contact"
