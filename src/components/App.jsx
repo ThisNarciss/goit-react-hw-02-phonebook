@@ -4,7 +4,8 @@ import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { ChildrenBox, Container } from './App.styled';
+import { ChildrenBox, Container, Notification } from './App.styled';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
@@ -18,18 +19,19 @@ export class App extends Component {
   };
   onBtnDeleteClick = id => {
     this.setState(prevState => {
-      const filter = prevState.contacts.filter(contact => contact.id !== id);
+      const contacts = prevState.contacts.filter(contact => contact.id !== id);
 
-      return { contacts: [...filter] };
+      return { contacts };
     });
   };
 
   addNewContact = obj => {
-    const findName = this.state.contacts.find(
-      contact => contact.name.toLowerCase() === obj.name.toLowerCase()
+    const { contacts } = this.state;
+    const findName = contacts.find(
+      ({ name }) => name.toLowerCase() === obj.name.toLowerCase()
     );
-    const findNumber = this.state.contacts.find(
-      contact => contact.number.toLowerCase() === obj.number.toLowerCase()
+    const findNumber = contacts.find(
+      ({ number }) => number.toLowerCase() === obj.number.toLowerCase()
     );
 
     if (findName) {
@@ -43,8 +45,12 @@ export class App extends Component {
 
     Notify.success(`${obj.name} add to the contacts`);
 
-    this.setState({ contacts: [...this.state.contacts, obj] });
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, { ...obj, id: nanoid() }],
+    }));
   };
+
+  filterContacts = name => this.setState({ filter: name });
 
   render() {
     const { contacts, filter } = this.state;
@@ -52,25 +58,21 @@ export class App extends Component {
     return (
       <Container>
         <Section title="Phonebook">
-          <ContactForm
-            onSubmit={this.addNewContact}
-            nameText="Name"
-            numberText="Number"
-            btnText="Add contact"
-          />
+          <ContactForm onSubmit={this.addNewContact} />
         </Section>
         <Section title="Contacts">
-          <ChildrenBox>
-            <Filter
-              filterText="Find contacts by name"
-              onChange={name => this.setState({ filter: name })}
-            />
-            <ContactList
-              contactsList={contacts}
-              filterName={filter}
-              onBtnClick={this.onBtnDeleteClick}
-            />
-          </ChildrenBox>
+          {contacts.length ? (
+            <ChildrenBox>
+              <Filter onChange={this.filterContacts} />
+              <ContactList
+                contactList={contacts}
+                filterName={filter}
+                onBtnClick={this.onBtnDeleteClick}
+              />
+            </ChildrenBox>
+          ) : (
+            <Notification>There are no contacts in the phone book</Notification>
+          )}
         </Section>
       </Container>
     );

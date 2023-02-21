@@ -16,3 +16,11 @@ export const ChildrenBox = styled.div`
 
   width: 350px;
 `;
+
+export const Notification = styled.p`
+  padding: 20px 40px;
+  font: 20px;
+  border-radius: 5px;
+  border: 1px solid red;
+  color: red;
+`;

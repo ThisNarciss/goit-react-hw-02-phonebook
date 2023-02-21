@@ -1,35 +1,32 @@
 import PropTypes from 'prop-types';
-import { Component } from 'react';
+
 import { nanoid } from 'nanoid';
 import { FilterBox, FilterInput, FilterLabel } from './Filter.styled';
 
 import { IconSearch } from './Filter.styled';
 
-export class Filter extends Component {
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    filterText: PropTypes.string.isRequired,
-  };
-  filterInputId = nanoid();
+const filterInputId = nanoid();
 
-  handleFilterChange = e => {
-    this.props.onChange(e.target.value.trim());
+export const Filter = ({ onChange }) => {
+  const handleFilterChange = e => {
+    onChange(e.target.value.trim());
   };
-  // BiSearchAlt
-  render() {
-    const { filterText } = this.props;
-    return (
-      <FilterBox>
-        <IconSearch size={20} />
-        <FilterLabel htmlFor={this.filterInputId}>{filterText}</FilterLabel>
-        <FilterInput
-          id={this.filterInputId}
-          type="text"
-          name="filter"
-          placeholder="Search"
-          onChange={this.handleFilterChange}
-        />
-      </FilterBox>
-    );
-  }
-}
+
+  return (
+    <FilterBox>
+      <IconSearch size={20} />
+      <FilterLabel htmlFor={filterInputId}>Find contacts by name</FilterLabel>
+      <FilterInput
+        id={filterInputId}
+        type="text"
+        name="filter"
+        placeholder="Search"
+        onChange={handleFilterChange}
+      />
+    </FilterBox>
+  );
+};
+
+Filter.propTypes = {
+  onChange: PropTypes.func.isRequired,
+};
