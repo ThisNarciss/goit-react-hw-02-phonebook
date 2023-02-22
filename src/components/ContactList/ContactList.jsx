@@ -2,14 +2,10 @@ import PropTypes from 'prop-types';
 import { BiUser } from 'react-icons/bi';
 import { Item, List, ButtonDel, Text } from './ContactList.styled';
 
-export const ContactList = ({ contactList, filterName, onBtnClick }) => {
-  const contacts = contactList.filter(item => {
-    return item.name.toLowerCase().includes(filterName.toLowerCase());
-  });
-
+export const ContactList = ({ contactList, onBtnClick }) => {
   return (
     <List>
-      {contacts.map(({ id, name, number }) => {
+      {contactList.map(({ id, name, number }) => {
         return (
           <Item key={id}>
             <BiUser />

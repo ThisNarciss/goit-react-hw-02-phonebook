@@ -52,9 +52,15 @@ export class App extends Component {
 
   filterContacts = name => this.setState({ filter: name });
 
+  getFilteredContacts(filterName, contacts) {
+    return contacts.filter(item => {
+      return item.name.toLowerCase().includes(filterName.toLowerCase());
+    });
+  }
+
   render() {
     const { contacts, filter } = this.state;
-
+    const filteredContacts = this.getFilteredContacts(filter, contacts);
     return (
       <Container>
         <Section title="Phonebook">
@@ -65,8 +71,7 @@ export class App extends Component {
             <ChildrenBox>
               <Filter onChange={this.filterContacts} />
               <ContactList
-                contactList={contacts}
-                filterName={filter}
+                contactList={filteredContacts}
                 onBtnClick={this.onBtnDeleteClick}
               />
             </ChildrenBox>
